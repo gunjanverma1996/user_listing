@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <title>User Listing</title>
+    <link
+      rel="icon"
+      href="user.jpg"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <div class="wrapperTable">
+      <div class="tablePageSection">
+        <div class="menuHeading d-flex">
+          <div class="menubar" data-toggle="collapse" data-target="#sideMenu">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div class="headingSection">
+            <span>User Table</span>
+            <div class="headerIconTabs">
+              <ul class="iconItems m-0 mr-4">
+                <li>
+                  <a href="#"><i class="fa fa-search"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-bell"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-user"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="sideNavMenuBar d-flex w-100">
+          <div class="sideMenu" id="sideMenu">
+            <ul class="sideListing pt-3">
+              <li>
+                <i class="fa fa-address-book-o pl-1" aria-hidden="true"></i>
+                <a href="#" class="navTitle pl-3">Address</a>
+              </li>
+              <li>
+                <i class="fa fa-pencil-square-o pl-1" aria-hidden="true"></i>
+                <a href="#" class="navTitle pl-3">Edit</a>
+              </li>
+              <li>
+                <i class="fa fa-paper-plane pl-1" aria-hidden="true"></i>
+                <a href="#" class="navTitle pl-3">Send</a>
+              </li>
+              <li>
+                <i class="fa fa-share-alt pl-1" aria-hidden="true"></i>
+                <a href="#" class="navTitle pl-3">Share</a>
+              </li>
+              <li>
+                <i
+                  class="fa fa-volume-control-phone pl-2"
+                  aria-hidden="true"
+                ></i>
+                <a href="#" class="navTitle pl-3">Phone</a>
+              </li>
+              <li>
+                <i class="fa fa-calendar-check-o pl-1" aria-hidden="true"></i>
+                <a href="#" class="navTitle pl-3">Calender</a>
+              </li>
+            </ul>
+          </div>
+          <div class="table_main_container">
+            <div class="searchContent">
+              <div class="form-label d-flex mt-2" id="search-box">
+                <input
+                  type="text"
+                  class="form-control search_text"
+                  id="search_text"
+                  placeholder="Search.. "
+                />
+                <img src="search.png" width="20" height="20" />
+              </div>
+            </div>
+            <div class="userTablesection">
+              <table class="table userDetailTable table-hover table-responsive">
+                <thead>
+                  <tr>
+                    <th style="width: 8rem" onclick="sortTable(0)">Name</th>
+                    <th style="width: 9rem" onclick="sortTable(1)">Username</th>
+                    <th style="width: 12rem" onclick="sortTable(2)">Email</th>
+                    <th style="width: 23rem" onclick="sortTable(3)">Address</th>
+                    <th style="width: 12rem" onclick="sortTable(4)">Phone</th>
+                    <th style="width: 8rem" onclick="sortTable(5)">Website</th>
+                    <th style="width: 11rem" onclick="sortTable(6)">Company</th>
+                  </tr>
+                </thead>
+                <tbody id="userList"></tbody>
+              </table>
+            </div>
+            <div class="container">
+              <div class="pagination-wrapper mt-2"></div>
+            </div>
+          </div>
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Detailed Information</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form" id="userDetailedForm">
+                      <div class="form-group row">
+                        <label class="col-4">User Name : </label>
+                        <input type="text" class="col-6 input-sm" id="userName" disabled>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-4">Email : </label>
+                        <input type="text" class=" col-6 input-sm" id="emailID" disabled>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-4">Contact : </label>
+                        <input type="text" class=" col-6 input-sm" id="userContact" disabled>
+                      </div>
+                      <div class="row mb-3">
+                        <label class="col-4">Address : </label>
+                        <span class=" col-6 p-0" id="userAddress"></span>
+                      </div>
+                      <div class="row mb-3">
+                        <label class="col-4">Title : </label>
+                        <span class="col-6 p-0" id="userTitle"></span>
+                      </div>
+                      <div class="row mb-3">
+                        <label class="col-4">Body : </label>
+                        <span class="col-6 p-0" id="userBody"></span>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.moda
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript" src="table.js" charset="utf-8"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
